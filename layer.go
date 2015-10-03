@@ -42,7 +42,7 @@ func (l *Layer) RemoveEntity(d tl.Drawable) {
 }
 
 func (l *Layer) Show() {
-	l.visible = false
+	l.visible = true
 }
 
 func (l *Layer) Hide() {
