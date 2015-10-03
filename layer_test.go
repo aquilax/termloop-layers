@@ -6,12 +6,6 @@ import (
 	"testing"
 )
 
-type TestEntity struct{}
-
-func (te *TestEntity) Tick(e tl.Event) {}
-
-func (te *TestEntity) Draw(s *tl.Screen) {}
-
 func TestLayer(t *testing.T) {
 	Convey("Given Layer", t, func() {
 		l := NewLayer()
@@ -33,12 +27,23 @@ func TestLayer(t *testing.T) {
 			})
 		})
 		Convey("Given test entity", func() {
-			en := &TestEntity{}
+			te := &TestEntity{}
 			Convey("Adding entity to the layer works", func() {
-				l.AddEntity(en)
+				l.AddEntity(te)
 				So(len(l.Entities), ShouldEqual, 1)
+
+				Convey("Tick works", func() {
+					l.Tick(tl.Event{})
+					So(te.TickCalled, ShouldEqual, 1)
+				})
+
+				Convey("Draw works", func() {
+					l.Draw(nil)
+					So(te.DrawCalled, ShouldEqual, 1)
+				})
+
 				Convey("Removing  entity from the layer works", func() {
-					l.RemoveEntity(en)
+					l.RemoveEntity(te)
 					So(len(l.Entities), ShouldEqual, 0)
 				})
 			})
