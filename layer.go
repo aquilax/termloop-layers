@@ -61,3 +61,8 @@ func (l *Layer) Hide() {
 func (l *Layer) IsVisible() bool {
 	return l.visible
 }
+
+// Len returns the number of elements on the layer
+func (l *Layer) Len() int {
+	return len(l.Entities)
+}
