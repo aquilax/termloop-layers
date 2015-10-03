@@ -52,6 +52,19 @@ func (m *Manager) Draw(s *tl.Screen) {
 	}
 }
 
+// SetOrder sets the order in which the objects will be drawn
+func (m *Manager) SetOrder(keys []string) int {
+	m.keys = m.keys[:0]
+	i := 0
+	for _, key := range keys {
+		if _, ok := m.layers[key]; ok {
+			m.keys = append(m.keys, key)
+			i++
+		}
+	}
+	return i
+}
+
 func (m *Manager) keyIndex(name string) int {
 	for i, key := range m.keys {
 		if key == name {
