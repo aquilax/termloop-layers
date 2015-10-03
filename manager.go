@@ -52,7 +52,8 @@ func (m *Manager) Draw(s *tl.Screen) {
 	}
 }
 
-// SetOrder sets the order in which the objects will be drawn
+// SetOrder sets the order in which the objects will be drawn and returns the
+// number of found objects
 func (m *Manager) SetOrder(keys []string) int {
 	m.keys = m.keys[:0]
 	i := 0
