@@ -55,14 +55,15 @@ func (m *Manager) Draw(s *tl.Screen) {
 // SetOrder sets the order in which the objects will be drawn and returns the
 // number of found objects
 func (m *Manager) SetOrder(keys []string) int {
-	m.keys = m.keys[:0]
+	var newKeys []string
 	i := 0
 	for _, key := range keys {
 		if _, ok := m.layers[key]; ok {
-			m.keys = append(m.keys, key)
+			newKeys = append(newKeys, key)
 			i++
 		}
 	}
+	m.keys = newKeys
 	return i
 }
 
